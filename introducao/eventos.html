@@ -1,0 +1,62 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+    <button v-on:click="clicar">De 1 em 1</button>
+    <button v-on:click="somar(5, $event)">De 5 em 5</button>
+    <p v-on:mousemove="atualizarPosicao($event)">
+        Mouse: {{ x }} {{ y }}
+        <span v-on:mousemove.stop>AQUI NAO PROPAGA O EVENTO</span>
+    </p>
+    <a v-on:click.prevent="METODO" href="https://www.google.com.br">SITE DO GOOGLE</a>
+
+
+    <input type="text" v-on:keyup.enter="chamarAlert">
+
+    <hr>
+
+    {{resultado}}
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+
+        computed:{
+            resultado(){
+                random = Math.random();
+                console.log(random);
+                return random > 0.5 ? "Maior que 5" : "Menor ou igual a 5";
+            }
+        },
+
+        watch:{
+            contador(novo, antigo){
+                console.log(antigo);
+                console.log(novo);
+            }
+        },
+
+        methods:{
+            clicar(event){
+                this.contador++;
+            },
+            somar(num, event){
+                this.contador = this.contador+num;
+            },
+            atualizarPosicao(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            chamarAlert(){
+                alert("Alerta Alerta");
+            }
+        }
+    })
+</script>

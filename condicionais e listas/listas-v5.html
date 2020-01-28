@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<div id="app">
+    <ul class="list-group">
+        <li class="list-group-item" v-for="(cor, indice) in cores" v-on:key="cor">
+            {{cor}} | {{indice}}
+        </li>
+    </ul>
+<hr>
+
+    <template v-for="(cor, indice) in cores">
+        <h1>{{cor}}</h1>
+        <p>{{indice}}</p>
+    </template>
+
+    <hr>
+
+    <ul>
+        <li v-for="pessoa in pessoas">
+            <ul>
+                <li v-for="(valor, chave, indice) in pessoa">
+                    {{indice}}-{{chave}}: {{valor}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+<hr>
+
+<div v-for="n in 10">
+    {{n}}
+</div>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cores: ["vermelho", "verde", "amarelo", "azul"],
+            pessoas: [
+                { nome: "Ana", idade: 26, peso: 59 },
+                { nome: "Guilherme", idade: 22, peso: 89 },
+            ]
+        }
+    });
+</script>
